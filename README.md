@@ -3,7 +3,8 @@
 This repository contains the code and dataset for our NAACL 2025 Main paper **Automatic Input Rewriting Improves Translation with Large Language Models**.
 
 <div align="center">
-[🤖 <b><a href=https://github.com/dayeonki/rewrite_mt/code>Code</a></b> / 🤗 <b><a href=https://huggingface.co/datasets/zoeyki/rewrite_mt_dataset>Dataset</a></b> / 📄 <b><a href=https://arxiv.org/pdf/2502.16682>Paper</a></b>]
+<img src="https://github.com/user-attachments/assets/b3415a65-ccac-4468-a291-07602cb95509" style="width: 15px;" alt="code"> <b><a href=https://github.com/dayeonki/rewrite_mt>Code</a></b> | <img src="https://github.com/user-attachments/assets/2bd9af9b-2182-4aef-83cd-6e9ca6189a39" style="width: 15px;" alt="data">
+ <b><a href=https://huggingface.co/datasets/zoeyki/rewrite_mt_dataset>Dataset</a></b> | <img src="https://github.com/user-attachments/assets/fc2ca3c2-3e78-4ca4-a208-448c0a6c7068" style="width: 15px;" alt="paper"> <b><a href=https://arxiv.org/pdf/2502.16682>Paper</a></b>
 </div>
 
 
