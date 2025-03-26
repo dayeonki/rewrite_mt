@@ -1,5 +1,7 @@
 # Automatic Input Rewriting Improves Translation with Large Language Models
 
+Authors: Dayeon Ki, Marine Carpuat
+
 This repository contains the code and dataset for our NAACL 2025 Main paper **Automatic Input Rewriting Improves Translation with Large Language Models**.
 
 <div align="center">
