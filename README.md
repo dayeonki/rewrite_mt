@@ -122,13 +122,21 @@ Arguments for the evaluation code are as follows:
 
 ## Citation
 ```
-@misc{ki2025automaticinputrewritingimproves,
-      title={Automatic Input Rewriting Improves Translation with Large Language Models}, 
-      author={Dayeon Ki and Marine Carpuat},
-      year={2025},
-      eprint={2502.16682},
-      archivePrefix={arXiv},
-      primaryClass={cs.CL},
-      url={https://arxiv.org/abs/2502.16682}, 
+@inproceedings{ki-carpuat-2025-automatic,
+    title = "Automatic Input Rewriting Improves Translation with Large Language Models",
+    author = "Ki, Dayeon  and
+      Carpuat, Marine",
+    editor = "Chiruzzo, Luis  and
+      Ritter, Alan  and
+      Wang, Lu",
+    booktitle = "Proceedings of the 2025 Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)",
+    month = apr,
+    year = "2025",
+    address = "Albuquerque, New Mexico",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2025.naacl-long.542/",
+    doi = "10.18653/v1/2025.naacl-long.542",
+    pages = "10829--10856",
+    ISBN = "979-8-89176-189-6",
 }
 ```
