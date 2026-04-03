@@ -1,54 +1,74 @@
-# Automatic Input Rewriting Improves Translation with Large Language Models
-
-Authors: Dayeon Ki, Marine Carpuat
-
-This repository contains the code and dataset for our NAACL 2025 Main paper **Automatic Input Rewriting Improves Translation with Large Language Models**.
-
 <div align="center">
-<img src="https://github.com/user-attachments/assets/b3415a65-ccac-4468-a291-07602cb95509" style="width: 15px;" alt="code"> <b><a href=https://github.com/dayeonki/rewrite_mt>Code</a></b> | <img src="https://github.com/user-attachments/assets/2bd9af9b-2182-4aef-83cd-6e9ca6189a39" style="width: 15px;" alt="data">
- <b><a href=https://huggingface.co/datasets/zoeyki/rewrite_mt_dataset>Dataset</a></b> | <img src="https://github.com/user-attachments/assets/fc2ca3c2-3e78-4ca4-a208-448c0a6c7068" style="width: 15px;" alt="paper"> <b><a href=https://arxiv.org/pdf/2502.16682>Paper</a></b>
+
+ # Automatic Input Rewriting Improves <br> Translation with Large Language Models
+
+<p align="center">
+<img width="900" alt="Screenshot 2025-03-21 at 1 48 51 PM" src="https://github.com/user-attachments/assets/af4275ae-47e1-4297-b585-64881d38c3f2" />
+</p>
+
+<a href=https://dayeonki.github.io/>Dayeon Ki</a>, <a href=https://www.cs.umd.edu/~marine/>Marine Carpuat<a><br>
+University of Maryland
+<br>
+
+This repository contains the code and dataset for our NAACL 2025 Main paper <br> **Automatic Input Rewriting Improves Translation with Large Language Models**.
+
+<img src="https://github.com/user-attachments/assets/b3415a65-ccac-4468-a291-07602cb95509" style="width: 15px; vertical-align: middle;" alt="code"> <b><a href=https://github.com/dayeonki/rewrite_mt>Code</a></b> | 
+<img src="https://github.com/user-attachments/assets/2bd9af9b-2182-4aef-83cd-6e9ca6189a39" style="width: 15px; vertical-align: middle;" alt="data"> <b><a href=https://huggingface.co/datasets/zoeyki/rewrite_mt_dataset>Dataset</a></b> | 
+<img src="https://github.com/user-attachments/assets/fc2ca3c2-3e78-4ca4-a208-448c0a6c7068" style="width: 15px; vertical-align: middle;" alt="paper"> <b><a href=https://aclanthology.org/2025.naacl-long.542/>Paper</a></b>
+
+</div>
+
+---
+
+## 👾 TL;DR
+Can we improve machine translation with LLMs by _rewriting_ their inputs automatically? We present an empirical study of 21 input rewriting methods for translating from English into 6 target languages, showing text simplification as the most effective MT-agnostic rewrite strategy.
+
+
+## 📰 News
+- **`2025-01-22`** Our paper is accepted to **NAACL 2025**! See you in New Mexico!
+
+
+## ✏️ Content
+- [🗺️ Overview](#overview)
+- [🚀 Quick Start](#quick_start)
+  - [Data Preparation](#data-preparation)
+  - [MT-Agnostic Rewrite](#mt-agnostic-rewrite)
+  - [Task-Aware Rewrite](#task-aware-rewrite)
+  - [Translation](#translation)
+  - [Evaluation](#evaluation)
+
+---
+
+<a id="overview"></a>
+## 🗺️ Overview
+
+We ask the following questions: <br>
+
+ (**1**) Can we improve MT quality from LLMs by rewriting inputs for style? <br>
+ (**2**) How can we guide models to rewrite inputs to improve their translatability? 
+
+We conduct an empirical study with 21 input rewriting methods with varying levels of **MT-awareness** on translation. <br>
+We first **rewrite** the source sentence using different rewriting methods, **translate** each rewrite in the target language, and then **evaluate** the rewrites on the basis of (i) translatability and (ii) meaning preservation.
+
+
+### Results
+<div align="center">
+<img width="800" height="616" alt="Screenshot 2026-04-03 at 1 00 59 PM" src="https://github.com/user-attachments/assets/5416d680-5fef-4530-ba34-2d0ae3900901" />
 </div>
 
 
-## Abstract
-Can we improve machine translation (MT) with LLMs by rewriting their inputs automatically? Users commonly rely on the intuition that wellwritten text is easier to translate when using off-the-shelf MT systems. LLMs can rewrite text in many ways but in the context of MT, these capabilities have been primarily exploited to rewrite outputs via post-editing. We present an empirical study of 21 input rewriting methods with 3 open-weight LLMs for translating from English into 6 target languages. We show that text simplification is the most effective MT-agnostic rewrite strategy and that it can be improved further when using quality estimation to assess translatability. Human evaluation further confirms that simplified rewrites and their MT outputs both largely preserve the original meaning of the source and MT. These results suggest LLM-assisted input rewriting as a promising direction for improving translations.
 
-<p align="center">
-<img width="800" alt="Screenshot 2025-03-21 at 1 48 51 PM" src="https://github.com/user-attachments/assets/af4275ae-47e1-4297-b585-64881d38c3f2" />
-</p>
+<a id="quick_start"></a>
+## 🚀 Quick Start
 
+### Data Preparation
+We use the WMT-23 General MT task from [Tower-Eval](https://huggingface.co/datasets/Unbabel/TowerEval-Data-v0.1) dataset. For the main experiments, we focus on three language pairs: English-German (en-de), English-Russian (en-ru), and English-Chinese (en-zh). The dataset is in: `data/raw_{language_pair}.jsonl`.
 
-## Quick Links
-- [Overview](#overview)
-- [Preliminaries](#preliminaries)
-- [MT-Agnostic](#mt-agnostic)
-- [Task-Aware](#task-aware)
-- [Translate](#translate)
-- [Evaluate](#evaluate)
+We translate each source sentence in English to the respective target language using Tower-Instruct LLM. The translated dataset is in: `data/{language_pair}_mt_tower.jsonl`.
 
 
-## Overview
-In this work, we shed light on these issues by asking the following questions:
-
-- Can we improve MT quality from LLMs by rewriting inputs for style?
-- How can we guide models to rewrite inputs to improve their translatability? 
-
-In order to answer these questions, we conduct an empirical study with 21 input rewriting methods with varying levels of MT-awareness on translation. As shown in the figure, given a triplet of source sentence, translation, and its reference translation, we first rewrite the source sentence using different types of rewriting methods, translate each rewrite in the target language, and then evaluate the rewrites on the basis of translatability and meaning preservations.
-
-The following figure shows an example of two ways of improving MT. Given a pipeline of a source text going into the MT system and getting the machine translation output, one way to improve MT quality is **pre-editing** the source text before passing into the MT system and the other way is taking the MT output and **post-editing**. We explore the first variant:
-<p align="center">
-<img width="600" alt="Screenshot 2025-03-21 at 1 54 40 PM" src="https://github.com/user-attachments/assets/c9f9c78b-158f-4735-ac87-4a08f20b2189" />
-</p>
-
-## Preliminaries
-### [1] Dataset
-We use the WMT-23 General MT task from [Tower-Eval](https://huggingface.co/datasets/Unbabel/TowerEval-Data-v0.1) dataset. For the main experiments, we focus on three language pairs: English-German (en-de), English-Russian (en-ru), and English-Chinese (en-zh). The dataset is in the following: `data/raw_{language_pair}.jsonl`.
-
-### [2] Translated dataset
-We translate each source sentence in English to the respective target language using Tower-Instruct LLM. The translated dataset is in the following: `data/{language_pair}_mt_tower.jsonl`.
-
-## MT-Agnostic
-Within the process of source rewriting, the goal of a rewrite model is _to rewrite the original source sentence into another form that is easier to translate while preserving its intended meaning_. MT-Agnostic methods only reflect various prior assumptions on what makes text easier to translate and do not take as input any signal of translatability or knowledge about the end-task. We consider three prompting variants here, all inspired by prior works on source rewriting:
+### MT-Agnostic Rewrite
+MT-Agnostic rewrite methods leverage prior assumptions on what makes text _easier_ to translate and do not take as input any signal of translatability or knowledge about the end-task. We consider three prompting variants here, all inspired by prior works on source rewriting:
 
 1. **Simplification:** replacing complex words with simpler ones, rephrasing complex syntactic structures, or shortening sentences.
     - code: `mt_agnostic/simple_{llm}.py`
@@ -65,8 +85,10 @@ Each code accepts the following arguments:
   - `--output_path`: Save path of output file (after rewriting)
   - `--cache_dir`: Cache directory of pre-trained model checkpoints
 
-## Task-Aware
-Next, we design prompts that account for the fact that rewrites are aimed at MT. Many prior works have shown that LLMs can post-edit errors in MT outputs and we were curious whether this ability can be extended to rewriting inputs to enhance translatability. We consider two prompting strategies:
+
+### Task-Aware Rewrite
+We design prompts that account for the fact that rewrites are aimed at MT. Many prior works have shown that LLMs can post-edit errors in MT outputs and we were curious whether this ability can be extended to rewriting inputs to enhance translatability. We consider two prompting strategies:
+
 1. **Easy translation:** prompt LLMs to rewrite inputs in a way that specifically facilitates translation in the target language.
     - code: `task_aware/easy_{llm}.py`
 
@@ -74,7 +96,7 @@ Next, we design prompts that account for the fact that rewrites are aimed at MT.
     - code: `task_aware/cot_{llm}.py`
 
 
-## Translate
+### Translation
 We translate each generated rewrite into respective target language using `translate/translate_tower.py`.
 
 ```bash
@@ -95,17 +117,14 @@ Arguments for the translate code are as follows:
   - `--model_type`: Type of rewrite method (current code is set to simplification rewrite).
   - `--cache_dir`: Cache directory of pre-trained model checkpoints.
 
-## Evaluate
+
+### Evaluation
 We use [xCOMET](https://huggingface.co/Unbabel/XCOMET-XL) and [MetricX](https://github.com/google-research/metricx) to evaluate different aspects of rewrite quality. Using the two models, we examine three different evaluation metrics:
 - **Translatability:** quality estimation (QE) score between the source and target
 - **Meaning preservation:** QE score between the target and reference translation
 - **Overall translation quality:** Reference-based score using source, target, and reference translation
 
-<p align="center">
-<img width="550" alt="Screenshot 2025-03-21 at 2 39 07 PM" src="https://github.com/user-attachments/assets/e0dfc8dc-00e9-4611-a142-a4c63295b378" />
-</p>
-
-We show an evaluation example for CoEdit style transfer evaluate. We can evaluate for other rewrite methods using the same code: `evaluate/xcomet_mt_coedit.py` (for translatability), `evaluate/xcomet_ref_coedit.py` (for meaning preservation), and `evaluate/xcomet_mtref_coedit.py` (for overall translation quality).
+We show an example of evaluation result for CoEdit style transfer evaluate. We can evaluate for other rewrite methods using the same code: `evaluate/xcomet_mt_coedit.py` (for translatability), `evaluate/xcomet_ref_coedit.py` (for meaning preservation), and `evaluate/xcomet_mtref_coedit.py` (for overall translation quality).
 
 ```bash
 python -u evaluate/xcomet_mt_coedit.py \
@@ -119,8 +138,10 @@ Arguments for the evaluation code are as follows:
   - `--output_path`: Save path of output file (after evaluation).
   - `--cache_dir`: Cache directory of pre-trained model checkpoints.
 
+---
 
-## Citation
+## 🤲 Citation
+If you find our work useful in your research, please consider citing our work:
 ```
 @inproceedings{ki-carpuat-2025-automatic,
     title = "Automatic Input Rewriting Improves Translation with Large Language Models",
@@ -140,3 +161,6 @@ Arguments for the evaluation code are as follows:
     ISBN = "979-8-89176-189-6",
 }
 ```
+
+## 📧 Contact
+For questions, issues, or collaborations, please reach out to [dayeonki@umd.edu](mailto:dayeonki@umd.edu).
