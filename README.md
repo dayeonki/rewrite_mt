@@ -12,9 +12,15 @@ University of Maryland
 
 This repository contains the code and dataset for our NAACL 2025 Main paper <br> **Automatic Input Rewriting Improves Translation with Large Language Models**.
 
-<img src="https://github.com/user-attachments/assets/b3415a65-ccac-4468-a291-07602cb95509" style="width: 15px; vertical-align: middle;" alt="code"> <b><a href=https://github.com/dayeonki/rewrite_mt>Code</a></b> | 
-<img src="https://github.com/user-attachments/assets/2bd9af9b-2182-4aef-83cd-6e9ca6189a39" style="width: 15px; vertical-align: middle;" alt="data"> <b><a href=https://huggingface.co/datasets/zoeyki/rewrite_mt_dataset>Dataset</a></b> | 
-<img src="https://github.com/user-attachments/assets/fc2ca3c2-3e78-4ca4-a208-448c0a6c7068" style="width: 15px; vertical-align: middle;" alt="paper"> <b><a href=https://aclanthology.org/2025.naacl-long.542/>Paper</a></b>
+<p>
+  <a href="https://aclanthology.org/2025.naacl-long.542/" target="_blank" style="text-decoration:none">
+    <img src="https://img.shields.io/badge/arXiv-Paper-b31b1b?style=flat&logo=arxiv" alt="arXiv">
+  </a>
+ <br>
+  <a href="https://huggingface.co/datasets/zoeyki/rewrite_mt_dataset" target="_blank">
+    <img src="https://img.shields.io/badge/🤗-Dataset-yellow?style=flat" alt="HuggingFace">
+  </a>
+</p>
 
 </div>
 
@@ -36,6 +42,8 @@ Can we improve machine translation with LLMs by _rewriting_ their inputs automat
   - [Task-Aware Rewrite](#task-aware-rewrite)
   - [Translation](#translation)
   - [Evaluation](#evaluation)
+- [🤲 Citation](#citation)
+- [📧 Contact](#contact)
 
 ---
 
@@ -140,6 +148,7 @@ Arguments for the evaluation code are as follows:
 
 ---
 
+<a id="citation"></a>
 ## 🤲 Citation
 If you find our work useful in your research, please consider citing our work:
 ```
@@ -162,5 +171,6 @@ If you find our work useful in your research, please consider citing our work:
 }
 ```
 
+<a id="contact"></a>
 ## 📧 Contact
 For questions, issues, or collaborations, please reach out to [dayeonki@umd.edu](mailto:dayeonki@umd.edu).
