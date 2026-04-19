@@ -61,7 +61,7 @@ We first **rewrite** the source sentence using different rewriting methods, **tr
 
 ### Results
 <div align="center">
-<img width="800" height="616" alt="Screenshot 2026-04-03 at 1 00 59 PM" src="https://github.com/user-attachments/assets/5416d680-5fef-4530-ba34-2d0ae3900901" />
+<img width="800" alt="Screenshot 2026-04-03 at 1 00 59 PM" src="https://github.com/user-attachments/assets/5416d680-5fef-4530-ba34-2d0ae3900901" />
 </div>
 
 
